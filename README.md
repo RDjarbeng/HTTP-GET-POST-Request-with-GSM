@@ -13,32 +13,67 @@ Components:
   
 ![image](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/b578b016-4e7f-448a-a0a3-1699ee9bebec)
 
-
+> These sections provide a breakdown of the code by sections but you can skip to the full code below if you prefer.
 
 ## Connection diagram
 If you need help connecting the SIM900 to the arduino you can check out this tutorial:
 [Guide to SIM900 GSM GPRS Shield with Arduino](https://randomnerdtutorials.com/sim900-gsm-gprs-shield-arduino/)
 
+##  Setup
+To use the SIM900 GSM module with an Arduino Uno, you first need to import the SoftwareSerial library and define a SoftwareSerial object for communication with the module. Here's an example:
+
+```
+#include <SoftwareSerial.h>
+
+// SoftwareSerial object for communication with SIM900
+SoftwareSerial SIM900(2, 3); // RX, TX
+```
+
+## GET request - Retrieving data from the internet 
+
+
+This code snippet demonstrates how to perform a GET request using the GPRS connection of the SIM900 GSM module. It utilizes various AT commands to establish the connection and send the request.
 # Connecting to the internet
 ![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
 
-## GET request - Retrieving data from the internet 
-This code performs a get request using the GPRS connection
+
 ```
-void testGetRequestMTN(){
-  sendCommand("AT");
-  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
-  sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\"");
-  sendCommand("AT+SAPBR=1,1");
-  sendCommand("AT+HTTPINIT");
-  sendCommand("AT+HTTPPARA=\"CID\",1");
-  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); //replace google.com with the link to your server 
-  sendCommand("AT+HTTPACTION=0");
-  delay(9000);
-  sendCommand("AT+HTTPREAD");
-  sendCommand("AT+HTTPTERM");
+
+void testGetRequest() {
+  sendCommand("AT"); // Check if the module is responsive
+  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\""); // Set the connection type to GPRS
+  sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\""); // Set the Access Point Name (APN) for the network provider
+  sendCommand("AT+SAPBR=1,1"); // Open the GPRS context
+  sendCommand("AT+HTTPINIT"); // Initialize the HTTP service
+  sendCommand("AT+HTTPPARA=\"CID\",1"); // Set the HTTP context identifier
+  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); // Set the URL for the server
+  sendCommand("AT+HTTPACTION=0"); // Initiate the HTTP GET request
+  delay(9000); // Wait for the response (adjust the delay as needed)
+  sendCommand("AT+HTTPREAD"); // Read the HTTP response
+  sendCommand("AT+HTTPTERM"); // Terminate the HTTP service
 }
 ```
+#### Explanation of AT commands:
+
+AT: This command checks the responsiveness of the SIM900 module.
+AT+SAPBR=3,1,\"Contype\",\"GPRS\": Sets the connection type to GPRS.
+AT+SAPBR=3,1,\"APN\",\"internet.mtn\": Sets the Access Point Name (APN) for the GPRS connection. Please change the "internet.mtn" to the appropriate APN for your network provider.
+AT+SAPBR=1,1: Opens the GPRS context to establish the connection.
+AT+HTTPINIT: Initializes the HTTP service on the SIM900 module.
+AT+HTTPPARA=\"CID\",1: Sets the HTTP context identifier to 1.
+AT+HTTPPARA=\"URL\",\"http://google.com/\": Sets the URL for the server. Replace "http://google.com/" with the actual URL of the server you want to send the GET request to.
+AT+HTTPACTION=0: Initiates the HTTP GET request.
+delay(9000): Waits for the response from the server. Adjust the delay time as per your requirements.
+AT+HTTPREAD: Reads the HTTP response from the server.
+AT+HTTPTERM: Terminates the HTTP service on the SIM900 module.
+Please note that the APN and URL for the server are provided as hardcoded values in this code snippet. It is recommended to make them variables so that users can easily modify them without having to locate them in the code.
+
+
+
+
+
+
+
 
 ## POST request - Sending data to the internet
 
