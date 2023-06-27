@@ -31,9 +31,9 @@ To use the SIM900 GSM module with an Arduino Uno, you first need to import the S
 SoftwareSerial SIM900(2, 3); // RX, TX
 ```
 
-In this example, we set the RX pin to digital pin 2 and the TX pin to digital pin 3. You can adjust these pin assignments based on your specific setup.
+In this example, we set the RX pin to digital pin 2 and the TX pin to digital pin 3. You can adjust these pin assignments based on your specific setup. <br>
 
-Next, there are two utility functions provided in the code that simplify sending commands to the SIM900 module and displaying the response. However, if you prefer, you can directly send data to the module using SIM900.println("command");, replacing "command" with the AT command you want to send.
+Next, there are two utility functions provided in the code that simplify sending commands to the SIM900 module and displaying the response. However, if you prefer, you can directly send data to the module using SIM900.println("command");, replacing "command" with the AT command you want to send. <br>
 
 The utility functions are as follows
 ```
@@ -60,6 +60,7 @@ Please note that these utility functions are provided to assist in displaying th
 
 # Connecting to the internet
 ![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
+
 ## GET request - Retrieving data from the internet 
 
 This code snippet demonstrates how to perform a GET request using the GPRS connection of the SIM900 GSM module. It utilizes various AT commands to establish the connection and send the request.
@@ -84,20 +85,21 @@ void testGetRequest() {
 #### Explanation of AT commands:
 > The backslash \ is used as an escape character so that the quotes " used in the command are not mistaken for the code for the Arduino
 
-AT: This command checks the responsiveness of the SIM900 module.
-AT+SAPBR=3,1,\"Contype\",\"GPRS\": Sets the connection type to GPRS.
-AT+SAPBR=3,1,\"APN\",\"internet.mtn\": Sets the Access Point Name (APN) for the GPRS connection. Please change the "internet.mtn" to the appropriate APN for your network provider.
-AT+SAPBR=1,1: Opens the GPRS context to establish the connection.
-AT+HTTPINIT: Initializes the HTTP service on the SIM900 module.
-AT+HTTPPARA=\"CID\",1: Sets the HTTP context identifier to 1.
-AT+HTTPPARA=\"URL\",\"http://google.com/\": Sets the URL for the server. Replace "http://google.com/" with the actual URL of the server you want to send the GET request to.
-AT+HTTPACTION=0: Initiates the HTTP GET request.
-delay(9000): Waits for the response from the server. Adjust the delay time as per your requirements.
-AT+HTTPREAD: Reads the HTTP response from the server.
-AT+HTTPTERM: Terminates the HTTP service on the SIM900 module.
+1. **AT**: This command checks the responsiveness of the SIM900 module. Expected response: "OK" if the module is responsive.
+2. **AT+SAPBR=3,1,\"Contype\",\"GPRS\"**: Sets the connection type to GPRS. Expected response: "OK" if the command is successful.
+3. **AT+SAPBR=3,1,\"APN\",\"internet.mtn\"**: Sets the Access Point Name (APN) for the GPRS connection. Please change the "internet.mtn" to the appropriate APN for your network provider. Expected response: "OK" if the command is successful.
+4. **AT+SAPBR=1,1**: Opens the GPRS context to establish the connection. Expected response: "OK" if the connection is successfully established.
+ 
+> Note: This command **AT+SAPBR=1,1** may fail when running it a second time and show "ERROR" but the GET request can still work.
+5. **AT+HTTPINIT**: Initializes the HTTP service on the SIM900 module. Expected response: "OK" if the initialization is successful.
+6. **AT+HTTPPARA=\"CID\",1**: Sets the HTTP context identifier to 1. Expected response: "OK" if the parameter is set successfully.
+7. **AT+HTTPPARA=\"URL\",\"http://google.com/\"**: Sets the URL for the server. Replace "http://google.com/" with the actual URL of the server you want to send the GET request to. Expected response: "OK" if the URL is set successfully.
+8. **AT+HTTPACTION=0**: Initiates the HTTP GET request. Expected response: "OK" followed by the HTTP response code (e.g., "+HTTPACTION:0,200") if the request is successful.
+9. **delay(9000)**: Waits for the response from the server. Adjust the delay time as per your requirements.
+10. **AT+HTTPREAD**: Reads the HTTP response from the server. Expected response: The response data from the server.
+11. **AT+HTTPTERM**: Terminates the HTTP service on the SIM900 module. Expected response: "OK" if the termination is successful.
+
 Please note that the APN and URL for the server are provided as hardcoded values in this code snippet. It is recommended to make them variables so that users can easily modify them without having to locate them in the code.
-
-
 
 
 
