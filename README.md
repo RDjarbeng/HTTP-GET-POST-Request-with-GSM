@@ -23,7 +23,22 @@ If you need help connecting the SIM900 to the arduino you can check out this tut
 ![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
 
 ## GET request - Retrieving data from the internet 
-
+This code performs a get request using the GPRS connection
+```
+void testGetRequestMTN(){
+  sendCommand("AT");
+  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
+  sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\"");
+  sendCommand("AT+SAPBR=1,1");
+  sendCommand("AT+HTTPINIT");
+  sendCommand("AT+HTTPPARA=\"CID\",1");
+  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); //replace google.com with the link to your server 
+  sendCommand("AT+HTTPACTION=0");
+  delay(9000);
+  sendCommand("AT+HTTPREAD");
+  sendCommand("AT+HTTPTERM");
+}
+```
 
 ## POST request - Sending data to the internet
 
