@@ -13,13 +13,15 @@ Components:
   
 ![image](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/b578b016-4e7f-448a-a0a3-1699ee9bebec)
 
-> These sections provide a breakdown of the code by sections but you can skip to the full code below if you prefer.
 
-## Connection diagram
+
+### Connection diagram
 If you need help connecting the SIM900 to the arduino you can check out this tutorial:
 [Guide to SIM900 GSM GPRS Shield with Arduino](https://randomnerdtutorials.com/sim900-gsm-gprs-shield-arduino/)
 
-##  Setup
+**The following sections provide a breakdown of the code by sections but you can skip to the full code below if you prefer.**
+
+###  Setup
 To use the SIM900 GSM module with an Arduino Uno, you first need to import the SoftwareSerial library and define a SoftwareSerial object for communication with the module. Here's an example:
 
 ```
@@ -29,12 +31,38 @@ To use the SIM900 GSM module with an Arduino Uno, you first need to import the S
 SoftwareSerial SIM900(2, 3); // RX, TX
 ```
 
-## GET request - Retrieving data from the internet 
+In this example, we set the RX pin to digital pin 2 and the TX pin to digital pin 3. You can adjust these pin assignments based on your specific setup.
 
+Next, there are two utility functions provided in the code that simplify sending commands to the SIM900 module and displaying the response. However, if you prefer, you can directly send data to the module using SIM900.println("command");, replacing "command" with the AT command you want to send.
 
-This code snippet demonstrates how to perform a GET request using the GPRS connection of the SIM900 GSM module. It utilizes various AT commands to establish the connection and send the request.
+The utility functions are as follows
+```
+void sendCommand(const char* command) {
+  SIM900.println(command);
+  ShowSerialData();
+}
+
+void ShowSerialData() {
+  Serial.println("Show serial data:");
+  while (SIM900.available()) {
+    char c = SIM900.read();
+    Serial.write(c);
+  }
+  Serial.println("");
+  delay(1000);
+}
+```
+The sendCommand function takes a command as input and sends it to the SIM900 module using SIM900.println(command). After sending the command, it calls the ShowSerialData function to display the response received from the module.
+
+The ShowSerialData function reads the response from the SIM900 module using SIM900.available() and SIM900.read(). It then writes each character of the response to the Serial monitor using Serial.write(c). Finally, it adds a delay of 1 second (delay(1000)) to allow for easier reading of the displayed data.
+
+Please note that these utility functions are provided to assist in displaying the results of commands in a structured manner. If you prefer, you can directly send commands to the SIM900 module using SIM900.println("command");. The choice between using the utility functions or direct command sending depends on your preference and the level of detail you want in displaying the response.
+
 # Connecting to the internet
 ![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
+## GET request - Retrieving data from the internet 
+
+This code snippet demonstrates how to perform a GET request using the GPRS connection of the SIM900 GSM module. It utilizes various AT commands to establish the connection and send the request.
 
 
 ```
@@ -54,6 +82,7 @@ void testGetRequest() {
 }
 ```
 #### Explanation of AT commands:
+> The backslash \ is used as an escape character so that the quotes " used in the command are not mistaken for the code for the Arduino
 
 AT: This command checks the responsiveness of the SIM900 module.
 AT+SAPBR=3,1,\"Contype\",\"GPRS\": Sets the connection type to GPRS.
@@ -67,9 +96,6 @@ delay(9000): Waits for the response from the server. Adjust the delay time as pe
 AT+HTTPREAD: Reads the HTTP response from the server.
 AT+HTTPTERM: Terminates the HTTP service on the SIM900 module.
 Please note that the APN and URL for the server are provided as hardcoded values in this code snippet. It is recommended to make them variables so that users can easily modify them without having to locate them in the code.
-
-
-
 
 
 
