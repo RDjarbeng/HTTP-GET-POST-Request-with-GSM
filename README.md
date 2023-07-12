@@ -23,7 +23,8 @@ If you need help connecting the SIM900 to the arduino you can check out this tut
 
 Here's the connection diagram anyway.
 ![Screenshot 2023-07-12 125158](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/bbf424af-4986-4639-b86d-9e80ec885289)
-From my experience, the connection of the ground cable to the pin on the SIM900 coloured yellow did not make a difference in the behaviour.
+
+From my experience, the second connection of the ground cable to the pin on the SIM900 coloured yellow away from the RX,TX, did not make a difference in the behaviour.
 
 **The following sections provide a breakdown of the code by sections but you can skip to the full code below if you prefer.**
 
