@@ -1,4 +1,4 @@
-# SIM900 GET & POST request using arduino microcontroller
+![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/73ce7bab-1475-444e-ae2e-342364292e2a)# SIM900 GET & POST request using arduino microcontroller
 How to send a GET and POST request with AT commands using the SIM900 GSM/GPRS module and the Arduino UNO. This is useful for retrieving data from the Web and sending data to a web server for Internet of Things(IOT) or embedded systems projects. Could work with other GSM modules that are operated by AT commands such as SIM800L, SIM808 etc. This tutorial uses 2G (GSM) connection. I would be glad if it could be updated for 3G and 4G modules, it's a pity 😒 we have to be using 2G networks for projects in 2023.
 
 This tutorial assumes you are using an arduino uno but it should work for other arduino boards. If you are using a raspberry pi microcontroller do **NOT** connect the raspberry pi directly to the SIM900. The SIM900 uses 5V logic level and the raspberry pi uses 3.3V logic level.
@@ -68,6 +68,13 @@ Please note that these utility functions are provided to assist in displaying th
 # Connecting to the internet
 ![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
 
+## Attention is all you need 🙂
+The SIM900 GSM module communicates with AT commands, where **AT** stands for attention. To perform any action with the GSM module such as sending the GET and POST request you will send a series of AT-commands that look like this mostly:
+
+```
+AT+command
+AT+command=value1, value2
+```
 ## GET request - Retrieving data from the internet 
 
 This code snippet demonstrates how to perform a GET request using the GPRS connection of the SIM900 GSM module. It utilizes various AT commands to establish the connection and send the request.
@@ -82,7 +89,7 @@ void testGetRequest() {
   sendCommand("AT+SAPBR=1,1"); // Open the GPRS context
   sendCommand("AT+HTTPINIT"); // Initialize the HTTP service
   sendCommand("AT+HTTPPARA=\"CID\",1"); // Set the HTTP context identifier
-  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); // Set the URL for the server
+  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); // Change the URL for the server you would like to reach
   sendCommand("AT+HTTPACTION=0"); // Initiate the HTTP GET request
   delay(9000); // Wait for the response (adjust the delay as needed)
   sendCommand("AT+HTTPREAD"); // Read the HTTP response
