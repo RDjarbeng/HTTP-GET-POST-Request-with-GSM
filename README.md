@@ -121,13 +121,13 @@ void testGetRequest() {
 
 Please note that the APN and URL for the server are provided as hardcoded values in this code snippet. It is recommended to make them variables so that users can easily modify them without having to locate them in the code.
 
-Find the full code here:
-
-[GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
 
 ## POST request - Sending data to the internet
 
 ## Full arduino code 
+Find the full code here:
+
+[GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
 
 ## Raspberry Pi- Note for raspberry pi users
 It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. 
