@@ -121,7 +121,9 @@ void testGetRequest() {
 
 Please note that the APN and URL for the server are provided as hardcoded values in this code snippet. It is recommended to make them variables so that users can easily modify them without having to locate them in the code.
 
+Find the full code here:
 
+[GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
 
 ## POST request - Sending data to the internet
 
