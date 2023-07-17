@@ -65,10 +65,7 @@ The ShowSerialData function reads the response from the SIM900 module using SIM9
 
 Please note that these utility functions are provided to assist in displaying the results of commands in a structured manner. If you prefer, you can directly send commands to the SIM900 module using SIM900.println("command");. The choice between using the utility functions or direct command sending depends on your preference and the level of detail you want in displaying the response.
 
-# Connecting to the internet
-![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
-
-## Attention is all you need 🙂
+## Working with the SIM900 - Attention is all you need 🙂
 The SIM900 GSM module communicates with AT commands, where **AT** stands for attention. To perform any action with the GSM module such as sending the GET and POST request you will send a series of AT-commands that look like this mostly:
 
 ```
@@ -78,6 +75,11 @@ AT+command=value1, value2
 Most of these commands return a value indicating if the request was successful or not. Most successful commands end with OK but when a command is not successful the module usually returns 'ERROR'
 
 The simplest AT-command is simply 'AT' which is used to check if the module is connected to the arduino. It returns 'OK' when successful, if not successful please check the connection to the SIM900 and try again because without the 'AT' command returning OK all other commands will most likely not work.
+
+# Connecting to the internet
+![UncappedSpeedRoaringPowaaahGIF](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/ba2e8c01-9aa1-41e4-b8a6-9dc96cad629c)
+
+
 
 ## GET request - Retrieving data from the internet 
 
@@ -126,7 +128,7 @@ Please note that the APN and URL for the server are provided as hardcoded values
 ## Full arduino code 
 
 ## Raspberry Pi- Note for raspberry pi users
->  It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. Or contact me on LinkedIn or Social media.
+It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. Or contact me on LinkedIn or Social media.
 
 #### This page is still in development - 
 Start- 27 June, 2023 - RD
