@@ -128,8 +128,13 @@ Please note that the APN and URL for the server are provided as hardcoded values
 ## Full arduino code 
 
 ## Raspberry Pi- Note for raspberry pi users
-It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. Or contact me on LinkedIn or Social media.
+It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. 
+
+## Similar projects
+[SIM900 Basic request library](https://github.com/mvento/SIM900-lib)
+[TinyGSM](https://github.com/vshymanskyy/TinyGSM) - arduino library for working with GSM modules
 
 #### This page is still in development - 
 Start- 27 June, 2023 - RD
 Last update- 17th July, 2023
+Open and issue or contact me on LinkedIn or Social media if you want to suggest improvements.
