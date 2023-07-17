@@ -75,6 +75,10 @@ The SIM900 GSM module communicates with AT commands, where **AT** stands for att
 AT+command
 AT+command=value1, value2
 ```
+Most of these commands return a value indicating if the request was successful or not. Most successful commands end with OK but when a command is not successful the module usually returns 'ERROR'
+
+The simplest AT-command is simply 'AT' which is used to check if the module is connected to the arduino. It returns 'OK' when successful, if not successful please check the connection to the SIM900 and try again because without the 'AT' command returning OK all other commands will most likely not work.
+
 ## GET request - Retrieving data from the internet 
 
 This code snippet demonstrates how to perform a GET request using the GPRS connection of the SIM900 GSM module. It utilizes various AT commands to establish the connection and send the request.
