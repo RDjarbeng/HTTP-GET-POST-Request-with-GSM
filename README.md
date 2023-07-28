@@ -166,7 +166,7 @@ The SIM7000e e-paper NB-IOT/GPRS HAT for the rasperry pi looks like a good alter
 
 #### This page is still in development - 
 Start- 27 June, 2023 - RD
-Last update- 17th July, 2023
+Last update- 28th July, 2023
 Open and issue or contact me on LinkedIn or Social media if you want to suggest improvements.
 
 [![Richard_Linkedin Badge](https://img.shields.io/badge/-Richard-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/richarddjarbeng/)](https://www.linkedin.com/in/richarddjarbeng/)
