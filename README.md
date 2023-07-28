@@ -88,19 +88,43 @@ This code snippet demonstrates how to perform a GET request using the GPRS conne
 
 ```
 
-void testGetRequest() {
-  sendCommand("AT"); // Check if the module is responsive
-  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\""); // Set the connection type to GPRS
-  sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\""); // Set the Access Point Name (APN) for the network provider
-  sendCommand("AT+SAPBR=1,1"); // Open the GPRS context
-  sendCommand("AT+HTTPINIT"); // Initialize the HTTP service
-  sendCommand("AT+HTTPPARA=\"CID\",1"); // Set the HTTP context identifier
-  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); // Change the URL for the server you would like to reach
-  sendCommand("AT+HTTPACTION=0"); // Initiate the HTTP GET request
-  delay(9000); // Wait for the response (adjust the delay as needed)
-  sendCommand("AT+HTTPREAD"); // Read the HTTP response
-  sendCommand("AT+HTTPTERM"); // Terminate the HTTP service
+void sendGetRequest(){
+
+  //Check if the module is responsive, expected value OK
+  sendCommand("AT"); 
+  //close or turn off network connection in case it was left open, expected value OK
+  sendCommand("AT+CIPSHUT"); 
+  // close GPRS context bearer in case it was left open, expected value OK
+  sendCommand("AT+SAPBR=0,1"); 
+  // open GPRS context establish GPRS connection
+  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
+  //Set the Access Point Name (APN) for the network provider
+  //change this apn value for your SIM card
+  sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\"");
+  //open GPRS context bearer
+  sendCommand("AT+SAPBR=1,1");
+  //initiate HTTP request
+  sendCommand("AT+HTTPINIT");
+  //set parameters for http session, HTTP context identifier
+  sendCommand("AT+HTTPPARA=\"CID\",1");
+   //Change the URL from google.com to the server you want to reach
+  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\"");
+  //Initiate the HTTP GET request, send http request to specified URL
+  sendCommand("AT+HTTPACTION=0");
+  // Wait for the response (adjust the delay as needed)
+  delay(9000); 
+  // Read the HTTP response, normally contains status code 200 if successful
+  sendCommand("AT+HTTPREAD");
+  //Terminate the HTTP service
+  sendCommand("AT+HTTPTERM");
+  //close or turn off network connection
+  sendCommand("AT+CIPSHUT");
+  // close GPRS context bearer
+  sendCommand("AT+SAPBR=0,1");
+  
+
 }
+
 ```
 #### Explanation of AT commands:
 > The backslash \ is used as an escape character so that the quotes " used in the command are not mistaken for the code for the Arduino
