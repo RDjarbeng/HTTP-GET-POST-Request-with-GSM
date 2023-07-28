@@ -17,8 +17,11 @@ void setup() {
 void loop() {
   // Add your main program logic here if needed
 }
-
+/**
+ * The sequence of commands establishes the GPRS connection for performing an HTTP request
+*/
 void sendGetRequest(){
+
   sendCommand("AT"); //expected value OK
   sendCommand("AT+CIPSHUT"); //expected value OK
   sendCommand("AT+SAPBR=0,1"); //expected value OK
@@ -45,7 +48,9 @@ void sendCommand(const char* command) {
   // delay(1000); //uncomment this delay if you need to wait a while
   ShowSerialData();
 }
-
+/**
+ * Prints the serial data, and waits 1 second
+ * */
 void ShowSerialData() {
   Serial.println("Show serial data:");
   while (gprsShield.available()) {
