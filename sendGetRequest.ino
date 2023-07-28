@@ -20,16 +20,22 @@ void loop() {
 
 void sendGetRequest(){
   sendCommand("AT"); //expected value OK
-  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
+  sendCommand("AT+CIPSHUT"); //expected value OK
+  sendCommand("AT+SAPBR=0,1"); //expected value OK
+  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");// open GPRS context establish GPRS connection
   sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\"");//change this apn value for the SIM card
-  sendCommand("AT+SAPBR=1,1");
-  sendCommand("AT+HTTPINIT");
-  sendCommand("AT+HTTPPARA=\"CID\",1");
+  sendCommand("AT+SAPBR=1,1");//open GPRS context bearer
+  sendCommand("AT+HTTPINIT");//initiate HTTP request
+  sendCommand("AT+HTTPPARA=\"CID\",1");//set parameters for http session
   sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); //Change the URL from google.com to the server you want to reach
-  sendCommand("AT+HTTPACTION=0");
+  sendCommand("AT+HTTPACTION=0");//send http request to specified URL, GET session start
   delay(9000); //wait for response for 9 seconds, reduce or increase based on your need
-  sendCommand("AT+HTTPREAD");
-  sendCommand("AT+HTTPTERM");
+  sendCommand("AT+HTTPREAD");// read results of request, normally contains status code 200 if successful
+  sendCommand("AT+HTTPTERM");//close http connection
+  sendCommand("AT+CIPSHUT");//close or turn off network connection
+  sendCommand("AT+SAPBR=0,1");// close GPRS context bearer
+  
+
 }
 
 
