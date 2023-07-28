@@ -19,7 +19,7 @@ void loop() {
 }
 
 void sendGetRequest(){
-  sendCommand("AT");
+  sendCommand("AT"); //expected value OK
   sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
   sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\"");//change this apn value for the SIM card
   sendCommand("AT+SAPBR=1,1");
