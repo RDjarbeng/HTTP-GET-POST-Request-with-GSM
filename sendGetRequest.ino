@@ -1,13 +1,14 @@
 #include <SoftwareSerial.h>
 
 // SoftwareSerial object for communication with SIM900
-SoftwareSerial SIM900(2, 3); // RX, TX
+SoftwareSerial gprsShield(2, 3); // RX, TX
 
 void setup() {
+  int baudRate=19200 // change the baud rate for your GSM modem eg: 9600, 115200
   Serial.begin(19200); // Serial monitor
-  SIM900.begin(19200); // SIM900 module
+  gprsShield.begin(19200); // gprsShield module
   delay(1000);
-  testGetRequestMTN();
+  sendGetRequest();
   
 
   // Add any additional code here if needed
@@ -17,7 +18,7 @@ void loop() {
   // Add your main program logic here if needed
 }
 
-void testGetRequestMTN(){
+void sendGetRequest(){
   sendCommand("AT");
   sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
   sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.mtn\"");//change this apn value for the SIM card
@@ -26,7 +27,7 @@ void testGetRequestMTN(){
   sendCommand("AT+HTTPPARA=\"CID\",1");
   sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\""); //Change the URL from google.com to the server you want to reach
   sendCommand("AT+HTTPACTION=0");
-  delay(9000);
+  delay(9000); //wait for response for 9 seconds, reduce or increase based on your need
   sendCommand("AT+HTTPREAD");
   sendCommand("AT+HTTPTERM");
 }
@@ -34,15 +35,15 @@ void testGetRequestMTN(){
 
 
 void sendCommand(const char* command) {
-  SIM900.println(command);
-  // delay(1000);
+  gprsShield.println(command);
+  // delay(1000); //uncomment this delay if you need to wait a while
   ShowSerialData();
 }
 
 void ShowSerialData() {
   Serial.println("Show serial data:");
-  while (SIM900.available()) {
-    char c = SIM900.read();
+  while (gprsShield.available()) {
+    char c = gprsShield.read();
     Serial.write(c);
   }
   Serial.println("");
