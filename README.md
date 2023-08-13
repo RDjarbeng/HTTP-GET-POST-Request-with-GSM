@@ -217,13 +217,17 @@ AT+HTTPACTION=1
 ```
 *Note*: The length of the characters in the JSON to send for the command `AT+HTTPDATA=` must be exact or the command will fail with 'ERROR'. Example: `AT+HTTPDATA=42,20000` this indicates that the JSON data is 42 characters in length. When successful the `AT+HTTPDATA=` command returns 'DOWNLOAD OK'.
 
-## Testing AT commands
+## Testing AT commands on the serial monitor
 You can run the file [testSerial.ino](https://github.com/RDjarbeng/HTTP-GET-POST-Request-with-GSM/blob/main/testSerial.ino) to test the serial commands one by one. Enter commands in the serial monitor and send them to the GSM modules and view the response.
 
 ## Full arduino code 
+
 Find the full code here:
 
 [GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
+
+Note that you will have to replace the URL based on the server you are sending the data to and the APN depending on the SIM provider you are using. The delays in the code can be adjusted accordingly. Generally the commands such as entering the JSON data and sending the request to the server requires more delays since their time to receive a response can change based on certain conditions. This is to prevent querying for a response too early.
+
 
 ## Raspberry Pi- Note for raspberry pi users and SIM900
 It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. 
