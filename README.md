@@ -224,7 +224,9 @@ You can run the file [testSerial.ino](https://github.com/RDjarbeng/HTTP-GET-POST
 
 Find the full code here:
 
-[GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
+* [GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
+* [POST request code for arduino](https://github.com/RDjarbeng/HTTP-GET-POST-Request-with-GSM/blob/main/sendPostRequest.ino)
+* [Test AT commands using serial monitorfor arduino](https://github.com/RDjarbeng/HTTP-GET-POST-Request-with-GSM/blob/main/testSerial.ino)
 
 Note that you will have to replace the URL based on the server you are sending the data to and the APN depending on the SIM provider you are using. The delays in the code can be adjusted accordingly. Generally the commands such as entering the JSON data and sending the request to the server requires more delays since their time to receive a response can change based on certain conditions. This is to prevent querying for a response too early.
 
@@ -239,11 +241,12 @@ The SIM7000e e-paper NB-IOT/GPRS HAT for the rasperry pi looks like a good alter
 
 
 ## Similar projects
-- [SIM900 Basic request library](https://github.com/mvento/SIM900-lib)
 - [TinyGSM](https://github.com/vshymanskyy/TinyGSM) - arduino library for working with GSM modules
+- [SIM900 Basic request library](https://github.com/mvento/SIM900-lib)
 
-#### This page was created by [Rdjarbeng](https://github.com/RDjarbeng)
-Start- 27 June, 2023 -
+## Appendix- About
+### This page was created by [Rdjarbeng](https://github.com/RDjarbeng)
+Start- 27 June, 2023
 Last update- 13th August, 2023
 Open an issue or contact me on [LinkedIn](https://www.linkedin.com/in/richarddjarbeng/) or Social media if you want to suggest improvements.
 
