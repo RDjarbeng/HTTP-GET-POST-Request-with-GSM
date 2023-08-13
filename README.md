@@ -108,7 +108,7 @@ void sendGetRequest(){
   //set parameters for http session, HTTP context identifier
   sendCommand("AT+HTTPPARA=\"CID\",1");
    //Change the URL from google.com to the server you want to reach
-  sendCommand("AT+HTTPPARA=\"URL\",\"http://google.com/\"");
+  sendCommand("AT+HTTPPARA=\"URL\",\"http://example.com/\"");
   //Initiate the HTTP GET request, send http request to specified URL
   sendCommand("AT+HTTPACTION=0");
   // Wait for the response (adjust the delay as needed)
@@ -126,8 +126,8 @@ void sendGetRequest(){
 }
 
 ```
-#### Explanation of AT commands:
-> The backslash \ is used as an escape character so that the quotes " used in the command are not mistaken for the code for the Arduino
+#### Explanation of AT commands for GET request:
+> The backslash '\' in the arduino code is used as an escape character so that the quotes " used in the command are not mistaken for the code for the Arduino
 
 1. **AT**: This command checks the responsiveness of the SIM900 module. Expected response: "OK" if the module is responsive.
 2. **AT+SAPBR=3,1,\"Contype\",\"GPRS\"**: Sets the connection type to GPRS. Expected response: "OK" if the command is successful.
@@ -137,7 +137,7 @@ void sendGetRequest(){
 > Note: This command **AT+SAPBR=1,1** may fail when running it a second time and show "ERROR" but the GET request can still work.
 5. **AT+HTTPINIT**: Initializes the HTTP service on the SIM900 module. Expected response: "OK" if the initialization is successful.
 6. **AT+HTTPPARA=\"CID\",1**: Sets the HTTP context identifier to 1. Expected response: "OK" if the parameter is set successfully.
-7. **AT+HTTPPARA=\"URL\",\"http://google.com/\"**: Sets the URL for the server. Replace "http://google.com/" with the actual URL of the server you want to send the GET request to. Expected response: "OK" if the URL is set successfully.
+7. **AT+HTTPPARA=\"URL\",\"http://example.com/\"**: Sets the URL for the server. Replace "http://google.com/" with the actual URL of the server you want to send the GET request to. Expected response: "OK" if the URL is set successfully.
 8. **AT+HTTPACTION=0**: Initiates the HTTP GET request. Expected response: "OK" followed by the HTTP response code (e.g., "+HTTPACTION:0,200") if the request is successful.
 9. **delay(9000)**: Waits for the response from the server. Adjust the delay time as per your requirements.
 10. **AT+HTTPREAD**: Reads the HTTP response from the server. Expected response: The response data from the server.
@@ -145,9 +145,26 @@ void sendGetRequest(){
 
 Please note that the APN and URL for the server are provided as hardcoded values in this code snippet. It is recommended to make them variables so that users can easily modify them without having to locate them in the code.
 
+It is worth mentioning that the get request is not only used for retrieving data from the internet it can be used to send data in the following format
+`http://example.com?value1=2?value2=13`
+Where value1 and value2 are the parameters being sent as 2 and 13. 
 
 ## POST request - Sending data to the internet
 
+
+```
+AT
+
+AT+CIPSHUT
+AT+SAPBR=0,1
+
+AT+SAPBR=3,1,"Contype","GPRS"
+AT+SAPBR=3,1,"APN","internet.mtn"
+AT+SAPBR=1,1
+AT+HTTPINIT
+AT+HTTPPARA="CID",1
+AT+HTTPPARA="URL","http://teom.afriset.org/"
+```
 ## Full arduino code 
 Find the full code here:
 
