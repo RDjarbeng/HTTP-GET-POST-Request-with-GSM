@@ -234,17 +234,18 @@ It is not recommended to connect the SIM900 board directly to the RX and TX (UAR
 
 ### Alternative GSM module for Raspberry Pi
 The SIM7000e e-paper NB-IOT/GPRS HAT for the rasperry pi looks like a good alternative for Raspberry Pi users. It fits unto the raspberry pi and does not require cable connections. The GET and POST request commands were tested on that module and the commands were verified to work. You can also debug with Minicom program in place of the arduino serial monitor to send AT-commands individually to the module.
-![SIM7000e mounted on Raspberry pi]ttps://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/4632ed84-d0c2-46c0-8f18-41cd39c5b405)
+
+![SIM7000e mounted on Raspberry pi](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/4632ed84-d0c2-46c0-8f18-41cd39c5b405)
 
 
 ## Similar projects
 - [SIM900 Basic request library](https://github.com/mvento/SIM900-lib)
 - [TinyGSM](https://github.com/vshymanskyy/TinyGSM) - arduino library for working with GSM modules
 
-#### This page is still in development - 
-Start- 27 June, 2023 - RD
-Last update- 28th July, 2023
-Open and issue or contact me on LinkedIn or Social media if you want to suggest improvements.
+#### This page was created by [Rdjarbeng](https://github.com/RDjarbeng)
+Start- 27 June, 2023 -
+Last update- 13th August, 2023
+Open an issue or contact me on [LinkedIn](https://www.linkedin.com/in/richarddjarbeng/) or Social media if you want to suggest improvements.
 
 [![Richard_Linkedin Badge](https://img.shields.io/badge/-Richard-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/richarddjarbeng/)](https://www.linkedin.com/in/richarddjarbeng/)
 
