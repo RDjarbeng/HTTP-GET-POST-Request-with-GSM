@@ -152,19 +152,74 @@ Where value1 and value2 are the parameters being sent as 2 and 13.
 ## POST request - Sending data to the internet
 
 
-```
-AT
 
-AT+CIPSHUT
-AT+SAPBR=0,1
-
-AT+SAPBR=3,1,"Contype","GPRS"
-AT+SAPBR=3,1,"APN","internet.mtn"
-AT+SAPBR=1,1
-AT+HTTPINIT
-AT+HTTPPARA="CID",1
-AT+HTTPPARA="URL","http://teom.afriset.org/"
 ```
+void testPostRequest(String jsonToSend){
+  //Example format of JSON:
+  // String jsonToSend="{\"uploadedAt\":\"2023-06-26T20:18:22.826Z\",\"data\":[{\"unit\":\"C\",\"reading\":31}]}";
+  
+
+  sendCommand("AT");
+  ShowSerialData();
+  sendCommand("AT+CIPSHUT");
+  ShowSerialData();
+  delay(500);
+  sendCommand("AT+SAPBR=0,1");
+  delay(2000);
+  
+  ShowSerialData();
+  sendCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
+  ShowSerialData();
+  sendCommand("AT+SAPBR=3,1,\"APN\",\"internet.apn\"");
+  ShowSerialData();
+  sendCommand("AT+SAPBR=1,1");
+  delay(2000);
+  ShowSerialData();
+  sendCommand("AT+HTTPINIT");
+  delay(1000);
+  ShowSerialData();
+  sendCommand("AT+HTTPPARA=\"CID\",1");
+  ShowSerialData();
+  sendCommand("AT+HTTPPARA=\"URL\",\"http://example.com/data\"");
+  ShowSerialData();
+  sendCommand("AT+HTTPPARA=\"CONTENT\",\"application/json\"");
+  ShowSerialData();
+  sendCommand(("AT+HTTPDATA=" + String(jsonToSend.length()) + ",20000").c_str());
+  delay(6000);
+  SIM900.println(jsonToSend);
+  delay(16000);
+  ShowSerialData();
+  sendCommand("AT+HTTPACTION=1");
+  delay(20000);
+  ShowSerialData();
+  sendCommand("AT+HTTPREAD");
+  ShowSerialData();
+  sendCommand("AT+HTTPTERM");
+  ShowSerialData();
+  sendCommand("AT+CIPSHUT");
+  ShowSerialData();
+}
+```
+#### Explanation of AT commands for POST request:
+The AT commands for the POST request are similar to the get request above except on these lines. 
+
+
+1. **AT+HTTPPARA="CONTENT","application/json"**: Indicates that the data will be in JSON format. Expected value: OK
+2. **AT+HTTPDATA=lengthOfJson,20000**: Prepares the module to receive the JSON data. First parameter is the length of the JSON to be sent and the second parameter is the time in milliseconds to wait for the data to be received, in this case; `20000` = 20 seconds. The module normally responds 'DOWNLOAD' waiting for the JSON input. The next command is actually not an 'AT' command but just the JSON input with the given length of characters specified.
+3. **jsonToSend** : Send just the JSON data. Expected response: OK  If the number of characters are lower or higher than expected the command will fail with 'ERROR'. 
+4. **AT+HTTPACTION=1**: Initiates the HTTP POST request. Expected response: "OK", number of characters in HTTP response followed by the HTTP response code (e.g. "+HTTPACTION:42,201")
+5. **AT+HTTPREAD**: Reads the HTTP response from the server. Expected response: The response data from the server, usually contains the json data you just transmitted with some additional details or error information in case the request returns anything other than 200 or 201 status code.
+6. The rest of the commands are the same as the GET request code, where we close the connection and reset the bearer
+```
+AT+HTTPPARA="CONTENT","application/json" 
+AT+HTTPDATA=lengthOfJson,20000
+AT+HTTPACTION=1
+```
+*Note*: The length of the characters in the JSON to send for the command `AT+HTTPDATA=` must be exact or the command will fail with 'ERROR'. Example: `AT+HTTPDATA=42,20000` this indicates that the JSON data is 42 characters in length. When successful the `AT+HTTPDATA=` command returns 'DOWNLOAD OK'.
+
+## Testing AT commands
+You can run the file [testSerial.ino](https://github.com/RDjarbeng/HTTP-GET-POST-Request-with-GSM/blob/main/testSerial.ino) to test the serial commands one by one. Enter commands in the serial monitor and send them to the GSM modules and view the response.
+
 ## Full arduino code 
 Find the full code here:
 
