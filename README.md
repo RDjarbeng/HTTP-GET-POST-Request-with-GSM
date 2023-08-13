@@ -1,10 +1,10 @@
 # GSM module SIM900 GET & POST request using arduino microcontroller
 How to send a GET and POST request with AT commands using the SIM900 GSM/GPRS module and the Arduino UNO. This is useful for retrieving data from the Web and sending data to a web server for Internet of Things(IOT) or embedded systems projects. Could work with other GSM modules that are operated by AT commands such as SIM800L, SIM808, SIM7000e etc. This tutorial uses 2G (GSM) connection. I would be glad if it could be updated for 3G and 4G modules, it's a pity 😒 we have to be using 2G networks for projects in 2023.
 
-This tutorial assumes you are using an arduino uno but it should work for other arduino boards. If you are using a raspberry pi microcontroller do **NOT** connect the raspberry pi directly to the SIM900. The SIM900 uses 5V logic level and the raspberry pi uses 3.3V logic level.
+This tutorial assumes you are using an arduino uno but it should work for other arduino boards with minor changes. If you are using a raspberry pi microcontroller do **NOT** connect the raspberry pi directly to the SIM900. The SIM900 uses 5V logic level and the raspberry pi uses 3.3V logic level.
 For raspberry Pi users see the raspberry Pi section below.
 
-Components:
+## Components:
 * [Arduino Uno microcontroller](https://store.arduino.cc/products/arduino-uno-rev3) - for running the commands
 * Serial cable for arduino Uno - for connecting the arduino to your pc
 * Power supply for SIM900. Recommended is a 5V power supply that can provide 2A, but 9V 1A, or 12V 1A also works.
@@ -153,9 +153,10 @@ Find the full code here:
 
 [GET request code for arduino](https://github.com/RDjarbeng/SIM900-GET-POST-Request/blob/main/sendGetRequest.ino)
 
-## Raspberry Pi- Note for raspberry pi users
+## Raspberry Pi- Note for raspberry pi users and SIM900
 It is not recommended to connect the SIM900 board directly to the RX and TX (UART) pins of the raspberry Pi, because the SIM900 uses a 5V logic level and the raspberry Pi uses 3.3V. Connecting them directly could damage the Pi. You may have to use a voltage level shifter. Unfortunately, I don't know any recommended level shifters, if you do let me know; submit a PR or open an issue to get my attention. 
 
+### Alternative GSM module for Raspberry Pi
 The SIM7000e e-paper NB-IOT/GPRS HAT for the rasperry pi looks like a good alternative for Raspberry Pi users. It fits unto the raspberry pi and does not require cable connections. The GET and POST request commands were tested on that module and the commands were verified to work. You can also debug with Minicom program in place of the arduino serial monitor to send AT-commands individually to the module.
 ![SIM7000e mounted on Raspberry pi]ttps://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/4632ed84-d0c2-46c0-8f18-41cd39c5b405)
 
