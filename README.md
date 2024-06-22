@@ -240,16 +240,14 @@ The SIM7000e e-paper NB-IOT/GPRS HAT for the rasperry pi looks like a good alter
 ![SIM7000e mounted on Raspberry pi](https://github.com/RDjarbeng/SIM900-GET-POST-Request/assets/57795443/4632ed84-d0c2-46c0-8f18-41cd39c5b405)
 
 
-## Similar projects
+## Other projects related to GSM GET and POST
 - [TinyGSM](https://github.com/vshymanskyy/TinyGSM) - arduino library for working with GSM modules
 - [SIM900 Basic request library](https://github.com/mvento/SIM900-lib)
 
 ## Appendix- About
 ### This page was created by [Rdjarbeng](https://github.com/RDjarbeng)
 Start- 27 June, 2023
-Last update- 13th August, 2023
-Open an issue or contact me on [LinkedIn](https://www.linkedin.com/in/richarddjarbeng/) or Social media if you want to suggest improvements.
+Last update- 22nd June, 2023
+Have feedback or comments? Open an issue or contact me on [LinkedIn](https://www.linkedin.com/in/richarddjarbeng/) or social media if you want to suggest improvements.
 
-[![Richard_Linkedin Badge](https://img.shields.io/badge/-Richard-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/richarddjarbeng/)](https://www.linkedin.com/in/richarddjarbeng/)
-
-
+[![Richard_Linkedin Badge](https://img.shields.io/badge/-Richard-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/richarddjarbeng/)](https://www.linkedin.com/in/richarddjarbeng/) [![Richard_X Badge](https://img.shields.io/badge/-Richard-1DA1F2?style=flat-square&logo=X&logoColor=white&link=https://x.com/DjarbengRichard)](https://x.com/DjarbengRichard)
